@@ -68,7 +68,7 @@ const BoxComponent = ({ route }) => {
         />
       BLACK BALL
     </Text>
-    <Suspense>
+    <Suspense fallback={null}>
       <Pokeball position={[0,-1,-1]} scale={[0.5,0.5,0.5]} rotation={[0,Math.PI,0]} />
     </Suspense>
     <ContactShadows rotation-x={Math.PI / 2} position={[0, -3, 0]} opacity={0.4} width={30} height={30} blur={1} far={15} />
