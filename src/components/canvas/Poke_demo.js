@@ -88,14 +88,14 @@ const Drawer = ({ position, visible, nodes, color1, ...props }) => {
   )
 }
 
-const LeftArrow = ({ nodes, color1, ...props }) => {
+const LeftArrow = ({ position, nodes, color1, ...props }) => {
   const a11y = useA11y()
 
   return (
     <mesh
       geometry={nodes.shape_triangle_flat_2001.geometry}
       material={nodes.shape_triangle_flat_2001.material}
-      position={[-3.51, 0, -0.62]}
+      position={position}
       rotation={[0, 1.54, -1.57]}
       scale={0.91}
     >
@@ -115,14 +115,14 @@ const LeftArrow = ({ nodes, color1, ...props }) => {
   )
 }
 
-const RightArrow = ({ nodes, color1, ...props }) => {
+const RightArrow = ({ position, nodes, color1, ...props }) => {
   const a11y = useA11y()
 
   return (
     <mesh
       geometry={nodes.shape_triangle_flat_2002.geometry}
       material={nodes.shape_triangle_flat_2002.material}
-      position={[3.44, 0, -0.62]}
+      position={position}
       rotation={[0, -1.54, Math.PI / 2]}
       scale={0.91}
     >
@@ -138,7 +138,7 @@ const RightArrow = ({ nodes, color1, ...props }) => {
 
 export default function Model({ color1, color2, ...props }) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/poke_demo.glb')
+  const { nodes, materials } = useGLTF('/pokedemo.glb')
 
   const [drawerExpanded, setDrawerExpanded] = useState(false)
   const [selectedOption, setSelectedOption] = useState('large')
@@ -148,7 +148,9 @@ export default function Model({ color1, color2, ...props }) {
       <A11yTag tag='ul' a11yElAttr={{ role: 'group' }}>
         <A11y
           role='button'
+          debug={true}
           disabled={!(drawerExpanded || selectedOption === 'large')}
+          hidden={!(drawerExpanded || selectedOption === 'large')}
           a11yElAttr={
             !drawerExpanded && selectedOption === 'large'
               ? { 'aria-expanded': 'false' }
@@ -157,6 +159,7 @@ export default function Model({ color1, color2, ...props }) {
           parentElAttr={{ role: 'treeitem' }}
           parentTag={'li'}
           actionCall={() => {
+            console.log('large')
             if (drawerExpanded) {
               setSelectedOption('large')
             }
@@ -172,6 +175,7 @@ export default function Model({ color1, color2, ...props }) {
         </A11y>
         <A11y
           role='button'
+          debug={true}
           parentTag={'li'}
           a11yElAttr={
             !drawerExpanded && selectedOption === 'medium'
@@ -179,8 +183,16 @@ export default function Model({ color1, color2, ...props }) {
               : {}
           }
           parentElAttr={{ role: 'treeitem' }}
+          a11yElStyle={
+            {
+              width:"25px",
+              height:"25px"
+            }
+          }
           disabled={!(drawerExpanded || selectedOption === 'medium')}
+          hidden={!(drawerExpanded || selectedOption === 'medium')}
           actionCall={() => {
+            console.log('medium')
             if (drawerExpanded) {
               setSelectedOption('medium')
             }
@@ -188,7 +200,8 @@ export default function Model({ color1, color2, ...props }) {
           }}
         >
           <MediumOption
-            position={drawerExpanded ? [-4.03, 4.33, 0.9] : [-3.03, 4.33, 0.9]}
+            // position={drawerExpanded ? [-4.03, 4.33, 0.9] : [-3.03, 4.33, 0.9]}
+            position={[-4.03, 4.33, 0.9]}
             visible={drawerExpanded || selectedOption === 'medium'}
             nodes={nodes}
             color1={color1}
@@ -197,15 +210,24 @@ export default function Model({ color1, color2, ...props }) {
         </A11y>
         <A11y
           role='button'
+          debug={true}
           parentTag={'li'}
           a11yElAttr={
             !drawerExpanded && selectedOption === 'small'
               ? { 'aria-expanded': 'false' }
               : {}
           }
+          a11yElStyle={
+            {
+              width:"10px",
+              height:"10px"
+            }
+          }
           parentElAttr={{ role: 'treeitem' }}
           disabled={!(drawerExpanded || selectedOption === 'small')}
+          hidden={!(drawerExpanded || selectedOption === 'small')}
           actionCall={() => {
+            console.log('small')
             if (drawerExpanded) {
               setSelectedOption('small')
             }
@@ -213,7 +235,8 @@ export default function Model({ color1, color2, ...props }) {
           }}
         >
           <SmallOption
-            position={drawerExpanded ? [-4.73, 4.33, 0.9] : [-3.03, 4.33, 0.9]}
+            // position={drawerExpanded ? [-4.73, 4.33, 0.9] : [-3.03, 4.33, 0.9]}
+            position={ [-4.73, 4.33, 0.9]}
             visible={drawerExpanded || selectedOption === 'small'}
             nodes={nodes}
             color1={color1}
@@ -302,7 +325,7 @@ export default function Model({ color1, color2, ...props }) {
         />
       </mesh>
       <A11y role='button' description='rotate right'>
-        <RightArrow nodes={nodes} color1={color1} />
+        <RightArrow position={[3.44, 0, -0.62]} nodes={nodes} color1={color1} />
       </A11y>
 
       <mesh
@@ -321,7 +344,7 @@ export default function Model({ color1, color2, ...props }) {
         />
       </mesh>
       <A11y role='button' description='rotate left'>
-        <LeftArrow nodes={nodes} color1={color1} />
+        <LeftArrow position={[-3.51, 0, -0.62]} nodes={nodes} color1={color1} />
       </A11y>
       <mesh
         geometry={nodes.shape_triangle_flat_3001.geometry}
@@ -424,12 +447,12 @@ export default function Model({ color1, color2, ...props }) {
         />
       </mesh>
 
-      <mesh
+      {/* <mesh
         geometry={nodes.shape_spiral_flat_3001.geometry}
         material={nodes.shape_spiral_flat_3001.material}
         position={[2.69, 4.33, 0.93]}
         rotation={[-1.52, 0, 0]}
-      />
+      /> */}
     </group>
   )
 }

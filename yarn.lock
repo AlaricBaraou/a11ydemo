@@ -1074,9 +1074,9 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.15.tgz#6a9d143f7f4f49db2d782f9e1c8839a29b43ae23"
   integrity sha512-15spi3V28QdevleWBNXE4pIls3nFZmBbUGrW9IVPwiQczuSb9n76TCB4bsk8TSel+I1OkHEdPhu5QKMfY6rQHA==
 
-"@react-three/a11y@https://pkg.csb.dev/pmndrs/react-three-a11y/commit/873a8530/@react-three/a11y":
+"@react-three/a11y@https://pkg.csb.dev/pmndrs/react-three-a11y/commit/4d94c5ec/@react-three/a11y":
   version "2.2.0-alpha.1"
-  resolved "https://pkg.csb.dev/pmndrs/react-three-a11y/commit/873a8530/@react-three/a11y#548f2348395978936a314266382db6b8c83fb121"
+  resolved "https://pkg.csb.dev/pmndrs/react-three-a11y/commit/4d94c5ec/@react-three/a11y#648d39e49df5cb995eae2e3d424771771560718d"
   dependencies:
     utility-types "^3.10.0"
     zustand "^3.2.0"
