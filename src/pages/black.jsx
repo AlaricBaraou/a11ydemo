@@ -21,7 +21,7 @@ const Page = ({ title }) => {
     <>
       <PokeViewer r3f >
         <Suspense>
-          <Pokeball color1="#004400" position={[0,-1,-1]} scale={[0.5,0.5,0.5]} rotation={[0,Math.PI,0]} />
+          <Pokeball color1="#000000" position={[0,-1,-1]} scale={[0.5,0.5,0.5]} rotation={[0,Math.PI,0]} />
         </Suspense>
       </PokeViewer>
     </>
