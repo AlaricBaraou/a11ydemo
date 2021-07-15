@@ -177,6 +177,7 @@ const BoxComponent = ({ route, children }) => {
             >
               <PickModel position={[0, 2.5, 0]} />
             </A11y>
+            
             <A11yTag
               tag='ul'
               a11yElAttr={{
