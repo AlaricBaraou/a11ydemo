@@ -17,7 +17,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@react-three/a11y": "https://pkg.csb.dev/pmndrs/react-three-a11y/commit/4d94c5ec/@react-three/a11y",
+    "@react-three/a11y": "https://pkg.csb.dev/pmndrs/react-three-a11y/commit/e0909f24/@react-three/a11y",
     "@react-three/drei": "^7.1.0",
     "@react-three/fiber": "^7.0.4",
     "cross-env": "^7.0.3",

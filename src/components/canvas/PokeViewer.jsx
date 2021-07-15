@@ -5,63 +5,131 @@ import { ContactShadows, Text } from '@react-three/drei'
 import { useRef, useState, Suspense } from 'react'
 import Pokeball from './Poke_demo'
 
-const Green = ({position, ...props}) => {
-
+const Title = ({ position, ...props }) => {
   const a11y = useA11y()
 
   return (
-    <Text 
-    position={position}
-    outlineWidth={a11y.focus || a11y.hover ? 0.04 : 0}
-    outlineColor="#ffffff"
-    rotation={[0,Math.PI/6,0]} fontSize={0.3} curveRadius={3} font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"  anchorX="center" anchorY="middle">
-    <meshStandardMaterial
-          roughness={0.2}
-          metalness={0}
-          flatShading={false}
-          emissive={"#004400"}
-          color={"#004400"}
-        />
+    <Text
+      position={position}
+      outlineWidth={0.04}
+      outlineColor={'#000000'}
+      outlineOpacity={1}
+      outlineBlur={0}
+      color={'#fecb04'}
+      fontSize={0.3}
+      curveRadius={3}
+      font='https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff'
+      anchorX='center'
+      anchorY='middle'
+    >
+      STARTER SELECTION
+    </Text>
+  )
+}
+
+const PickModel = ({ position, ...props }) => {
+  const a11y = useA11y()
+
+  return (
+    <Text
+     {...props}
+      position={position}
+      outlineWidth={a11y.focus || a11y.hover ? 0.04 : 0}
+      outlineColor='#ffffff'
+      fontSize={0.3}
+      curveRadius={3}
+      font='https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff'
+      anchorX='center'
+      anchorY='middle'
+    >
+      <meshStandardMaterial
+        roughness={0.2}
+        metalness={0}
+        flatShading={false}
+        emissive={'#000000'}
+        color={'#000000'}
+      />
+      PICK YOUR STARTER
+    </Text>
+  )
+}
+
+const Green = ({ position, ...props }) => {
+  const a11y = useA11y()
+
+  return (
+    <Text
+      {...props}
+      position={position}
+      outlineWidth={a11y.focus || a11y.hover ? 0.04 : 0}
+      outlineColor='#ffffff'
+      rotation={[0, Math.PI / 6, 0]}
+      fontSize={0.3}
+      curveRadius={3}
+      font='https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff'
+      anchorX='center'
+      anchorY='middle'
+    >
+      <meshStandardMaterial
+        roughness={0.2}
+        metalness={0}
+        flatShading={false}
+        emissive={'#004400'}
+        color={'#004400'}
+      />
       GREEN BALL
     </Text>
   )
 }
-const Red = ({position, ...props}) => {
-
+const Red = ({ position, ...props }) => {
   const a11y = useA11y()
 
   return (
-    <Text 
-    position={position}
-    outlineWidth={a11y.focus || a11y.hover ? 0.04 : 0}
-    outlineColor="#ffffff"
-     fontSize={0.3} curveRadius={3} font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"  anchorX="center" anchorY="middle">
-    <meshStandardMaterial
-          roughness={0.2}
-          metalness={0}
-          flatShading={false}
-          emissive={"#cc0000"}
-          color={"#cc0000"}
-        />
+    <Text
+    {...props}
+      position={position}
+      outlineWidth={a11y.focus || a11y.hover ? 0.04 : 0}
+      outlineColor='#ffffff'
+      fontSize={0.3}
+      curveRadius={3}
+      font='https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff'
+      anchorX='center'
+      anchorY='middle'
+    >
+      <meshStandardMaterial
+        roughness={0.2}
+        metalness={0}
+        flatShading={false}
+        emissive={'#cc0000'}
+        color={'#cc0000'}
+      />
       RED BALL
     </Text>
   )
 }
-const Black = ({position, ...props}) => {
-
+const Black = ({ position, ...props }) => {
   const a11y = useA11y()
 
   return (
-    <Text position={position}
-    outlineWidth={a11y.focus || a11y.hover ? 0.04 : 0}
-    outlineColor="#ffffff" rotation={[0,-Math.PI/6,0]} fontSize={0.3} curveRadius={3} font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"  anchorX="center" anchorY="middle">
-    <meshStandardMaterial
-          roughness={0.2}
-          metalness={0}
-          flatShading={false}
-          emissive={"#000000"}
-          color={"#000000"}
-        />
+    <Text
+    {...props}
+      position={position}
+      outlineWidth={a11y.focus || a11y.hover ? 0.04 : 0}
+      outlineColor='#ffffff'
+      rotation={[0, -Math.PI / 6, 0]}
+      fontSize={0.3}
+      curveRadius={3}
+      font='https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff'
+      anchorX='center'
+      anchorY='middle'
+    >
+      <meshStandardMaterial
+        roughness={0.2}
+        metalness={0}
+        flatShading={false}
+        emissive={'#000000'}
+        color={'#000000'}
+      />
       BLACK BALL
     </Text>
   )
@@ -71,8 +139,7 @@ const BoxComponent = ({ route, children }) => {
   const router = useStore((s) => s.router)
   // This reference will give us direct access to the THREE.Mesh object
   const mesh = useRef()
-  // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false)
+  const [menuExpanded, setMenuExpanded] = useState(false)
   // Subscribe this component to the render-loop, rotate the mesh every frame
   useFrame((state, delta) =>
     mesh.current
@@ -82,45 +149,107 @@ const BoxComponent = ({ route, children }) => {
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <>
-    <A11yTag tag="header">
-    <A11yTag tag="nav">
-    <A11yTag tag="ul">
-    <A11y
-      role='link'
-      href={'/'}
-      tag='li'
-      actionCall={() => {
-        router.push('/')
-      }}
-    >
-      <Green  position={[-2,2.2,0]} />
-    </A11y>
-    
-    <A11y
-      role='link'
-      href={'/red'}
-      tag='li'
-      actionCall={() => {
-        router.push('/red')
-      }}
-    >
-      <Red position={[0,2.2,-0.5]} />
-    </A11y>
-    <A11y
-      role='link'
-      href={'/black'}
-      tag='li'
-      actionCall={() => {
-        router.push('/black')
-      }}
-    >
-      <Black position={[2,2.2,0]} />
-    </A11y>
-    </A11yTag>
-    </A11yTag>
-    </A11yTag>
+      <A11yTag tag='header'>
+        <A11y role='content' description='STARTER SELECTION' tag={'h1'}>
+          <Title position={[0, 3, 0]} />
+        </A11y>
+        <A11yTag tag='nav'>
+          <A11yTag
+            tag='ul'
+            a11yElAttr={{
+              role: 'menu',
+            }}
+          >
+            <A11y
+              parentTag={'li'}
+              a11yElAttr={{
+                'aria-controls': 'mainnav',
+                'aria-expanded': menuExpanded,
+                "role":"menuitem"
+              }}
+              parentElAttr={{
+                role:"none"
+              }}
+              role='button'
+              actionCall={() => {
+                setMenuExpanded(!menuExpanded)
+              }}
+            >
+              <PickModel position={[0, 2.5, 0]} />
+            </A11y>
+            <A11yTag
+              tag='ul'
+              a11yElAttr={{
+                id:'mainnav',
+                role: 'group',
+              }}
+            >
+              <A11y
+                role='link'
+                href={'/'}
+                parentTag='li'
+                parentElAttr={{
+                  role:"none"
+                }}
+                a11yElAttr={{
+                  role:"menuitem"
+                }}
+                hidden={!menuExpanded}
+                actionCall={() => {
+                  router.push('/')
+                }}
+              >
+                <Green visible={menuExpanded} position={[-2, 2.2, 0]} />
+              </A11y>
+
+              <A11y
+                role='link'
+                href={'/red'}
+                parentTag='li'
+                parentElAttr={{
+                  role:"none"
+                }}
+                a11yElAttr={{
+                  role:"menuitem"
+                }}
+                hidden={!menuExpanded}
+                actionCall={() => {
+                  router.push('/red')
+                }}
+              >
+                <Red visible={menuExpanded} position={[0, 2.2, -0.5]} />
+              </A11y>
+              <A11y
+                role='link'
+                href={'/black'}
+                parentTag='li'
+                parentElAttr={{
+                  role:"none"
+                }}
+                a11yElAttr={{
+                  role:"menuitem"
+                }}
+                hidden={!menuExpanded}
+                actionCall={() => {
+                  router.push('/black')
+                }}
+              >
+                <Black visible={menuExpanded} position={[2, 2.2, 0]} />
+              </A11y>
+            </A11yTag>
+          </A11yTag>
+        </A11yTag>
+      </A11yTag>
       {children}
-    <ContactShadows rotation-x={Math.PI / 2} position={[0, -3, 0]} opacity={0.4} width={30} height={30} blur={1} far={15} />
+      <ContactShadows
+        rotation-x={Math.PI / 2}
+        position={[0, -3, 0]}
+        opacity={0.4}
+        width={30}
+        height={30}
+        blur={1}
+        far={15}
+      />
     </>
   )
 }
