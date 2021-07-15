@@ -148,7 +148,7 @@ export default function Model({ color1, color2, ...props }) {
       <A11yTag tag='ul' a11yElAttr={{ role: 'group' }}>
         <A11y
           role='button'
-          debug={true}
+          debug={false}
           disabled={!(drawerExpanded || selectedOption === 'large')}
           hidden={!(drawerExpanded || selectedOption === 'large')}
           a11yElAttr={
@@ -175,7 +175,7 @@ export default function Model({ color1, color2, ...props }) {
         </A11y>
         <A11y
           role='button'
-          debug={true}
+          debug={false}
           parentTag={'li'}
           a11yElAttr={
             !drawerExpanded && selectedOption === 'medium'
@@ -210,7 +210,7 @@ export default function Model({ color1, color2, ...props }) {
         </A11y>
         <A11y
           role='button'
-          debug={true}
+          debug={false}
           parentTag={'li'}
           a11yElAttr={
             !drawerExpanded && selectedOption === 'small'
