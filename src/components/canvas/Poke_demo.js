@@ -334,7 +334,7 @@ export default function Model({ color1, color2, ...props }) {
       <group position={[2, 0.5, 0]} >
       <A11yTag tag="form">
       <A11yTag tag="fieldset">
-      <A11y role='content' description='STARTER SELECTION' tag={'p'} parentTag={'legend'}>
+      <A11y role='content' description='Select option' tag={'p'} parentTag={'legend'}>
       <Text
       position={[-0.03, 4.33, 0.9]}
       rotation={[0, Math.PI, 0]}
