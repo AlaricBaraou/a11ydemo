@@ -12,14 +12,15 @@
     "prettier": "prettier --list-different \"./src/**/*.{js,jsx,md}\"",
     "dev": "next dev",
     "build": "next build",
-    "export": "EXPORT=true next build && EXPORT=true next export",
-    "analyze": "ANALYZE=true next build",
+    "export": "cross-env EXPORT=true next build && EXPORT=true next export",
+    "analyze": "cross-env ANALYZE=true next build",
     "start": "next start"
   },
   "dependencies": {
     "@react-three/a11y": "https://pkg.csb.dev/pmndrs/react-three-a11y/commit/873a8530/@react-three/a11y",
     "@react-three/drei": "^7.1.0",
     "@react-three/fiber": "^7.0.4",
+    "cross-env": "^7.0.3",
     "next": "^11.0.1",
     "react": "^18.0.0-alpha-dbe3363cc",
     "react-dom": "^17.0.2",
