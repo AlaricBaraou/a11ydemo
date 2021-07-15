@@ -13,7 +13,6 @@ const SmallOption = ({
   visible,
   nodes,
   color1,
-  drawerExpanded,
   ...props
 }) => {
   const a11y = useA11y()
@@ -44,7 +43,6 @@ const MediumOption = ({
   visible,
   nodes,
   color1,
-  drawerExpanded,
   ...props
 }) => {
   const a11y = useA11y()
@@ -68,7 +66,7 @@ const MediumOption = ({
   )
 }
 
-const Drawer = ({ position, visible, nodes, color1, ...props }) => {
+const LargeOption = ({ position, visible, nodes, color1, ...props }) => {
   const a11y = useA11y()
 
   return (
@@ -326,7 +324,6 @@ export default function Model({ color1, color2, ...props }) {
   const group = useRef()
   const { nodes, materials } = useGLTF('/pokedemo.glb')
 
-  const [drawerExpanded, setDrawerExpanded] = useState(false)
   const [rotationY, setRotationY] = useState(0)
   const [selectedOption, setSelectedOption] = useState('large')
 
@@ -334,105 +331,102 @@ export default function Model({ color1, color2, ...props }) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <A11yTag tag='ul' a11yElAttr={{ role: 'group' }}>
+      <group position={[2, 0.5, 0]} >
+      <A11yTag tag="form">
+      <A11yTag tag="fieldset">
+      <A11y role='content' description='STARTER SELECTION' tag={'p'} parentTag={'legend'}>
+      <Text
+      position={[-0.03, 4.33, 0.9]}
+      rotation={[0, Math.PI, 0]}
+      outlineOpacity={1}
+      color={color1}
+      fontSize={0.5}
+      font='https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff'
+      anchorX='center'
+      anchorY='middle'
+    >
+      Select option
+    </Text>
+        </A11y>
         <A11y
-          role='button'
+          role='input'
           debug={false}
-          disabled={!(drawerExpanded || selectedOption === 'large')}
-          hidden={!(drawerExpanded || selectedOption === 'large')}
-          a11yElAttr={
-            !drawerExpanded && selectedOption === 'large'
-              ? { 'aria-expanded': 'false' }
-              : {}
-          }
-          parentElAttr={{ role: 'treeitem' }}
-          parentTag={'li'}
+          description="Large"
+          a11yElAttr={{
+            type: "radio",
+            name: "sizeoption",
+            value: "large",
+            checked: selectedOption === "large",
+          }}
           actionCall={() => {
             console.log('large')
-            if (drawerExpanded) {
               setSelectedOption('large')
-            }
-            setDrawerExpanded(!drawerExpanded)
           }}
         >
-          <Drawer
+          <LargeOption
             position={[-3.03, 4.33, 0.9]}
-            visible={drawerExpanded || selectedOption === 'large'}
             nodes={nodes}
             color1={color1}
           />
         </A11y>
         <A11y
-          role='button'
+          role='input'
           debug={false}
-          parentTag={'li'}
-          a11yElAttr={
-            !drawerExpanded && selectedOption === 'medium'
-              ? { 'aria-expanded': 'false' }
-              : {}
-          }
-          parentElAttr={{ role: 'treeitem' }}
+          description="Medium"
+          a11yElAttr={{
+            type: "radio",
+            name: "sizeoption",
+            value: "medium",
+            checked: selectedOption === "medium",
+          }}
           a11yElStyle={
             {
               width:"25px",
               height:"25px"
             }
           }
-          disabled={!(drawerExpanded || selectedOption === 'medium')}
-          hidden={!(drawerExpanded || selectedOption === 'medium')}
           actionCall={() => {
             console.log('medium')
-            if (drawerExpanded) {
               setSelectedOption('medium')
-            }
-            setDrawerExpanded(!drawerExpanded)
           }}
         >
           <MediumOption
-            // position={drawerExpanded ? [-4.03, 4.33, 0.9] : [-3.03, 4.33, 0.9]}
             position={[-4.03, 4.33, 0.9]}
-            visible={drawerExpanded || selectedOption === 'medium'}
             nodes={nodes}
             color1={color1}
-            drawerExpanded={drawerExpanded}
           />
         </A11y>
         <A11y
-          role='button'
+          role='input'
           debug={false}
-          parentTag={'li'}
-          a11yElAttr={
-            !drawerExpanded && selectedOption === 'small'
-              ? { 'aria-expanded': 'false' }
-              : {}
-          }
+          description="Small"
+          a11yElAttr={{
+            type: "radio",
+            name: "sizeoption",
+            value: "small",
+            checked: selectedOption === "small",
+          }}
           a11yElStyle={
             {
               width:"10px",
               height:"10px"
             }
           }
-          parentElAttr={{ role: 'treeitem' }}
-          disabled={!(drawerExpanded || selectedOption === 'small')}
-          hidden={!(drawerExpanded || selectedOption === 'small')}
           actionCall={() => {
             console.log('small')
-            if (drawerExpanded) {
               setSelectedOption('small')
-            }
-            setDrawerExpanded(!drawerExpanded)
           }}
         >
           <SmallOption
-            // position={drawerExpanded ? [-4.73, 4.33, 0.9] : [-3.03, 4.33, 0.9]}
             position={ [-4.73, 4.33, 0.9]}
-            visible={drawerExpanded || selectedOption === 'small'}
             nodes={nodes}
             color1={color1}
-            drawerExpanded={drawerExpanded}
           />
         </A11y>
       </A11yTag>
+      </A11yTag>
+
+        </group>
 
       <Pokeball rotationY={rotationY} selectedOption={selectedOption} nodes={nodes} color1={color1} materials={materials}/>
       

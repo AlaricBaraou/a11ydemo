@@ -6,8 +6,6 @@ import { useRef, useState, Suspense } from 'react'
 import Pokeball from './Poke_demo'
 
 const Title = ({ position, ...props }) => {
-  const a11y = useA11y()
-
   return (
     <Text
       position={position}
@@ -77,7 +75,7 @@ const Green = ({ position, ...props }) => {
         emissive={'#004400'}
         color={'#004400'}
       />
-      GREEN BALL
+      GRASS TYPE
     </Text>
   )
 }
@@ -103,11 +101,11 @@ const Red = ({ position, ...props }) => {
         emissive={'#cc0000'}
         color={'#cc0000'}
       />
-      RED BALL
+      FIRE TYPE
     </Text>
   )
 }
-const Black = ({ position, ...props }) => {
+const Blue = ({ position, ...props }) => {
   const a11y = useA11y()
 
   return (
@@ -127,10 +125,10 @@ const Black = ({ position, ...props }) => {
         roughness={0.2}
         metalness={0}
         flatShading={false}
-        emissive={'#000000'}
-        color={'#000000'}
+        emissive={'#0000cc'}
+        color={'#0000cc'}
       />
-      BLACK BALL
+      WATER TYPE
     </Text>
   )
 }
@@ -171,29 +169,29 @@ const BoxComponent = ({ route, children }) => {
                 role:"none"
               }}
               role='button'
+              description="PICK YOUR STARTER"
               actionCall={() => {
                 setMenuExpanded(!menuExpanded)
               }}
             >
               <PickModel position={[0, 2.5, 0]} />
             </A11y>
-            
+
             <A11yTag
               tag='ul'
               a11yElAttr={{
                 id:'mainnav',
-                role: 'group',
               }}
             >
               <A11y
                 role='link'
                 href={'/'}
+                description={'GRASS TYPE'}
                 parentTag='li'
                 parentElAttr={{
                   role:"none"
                 }}
                 a11yElAttr={{
-                  role:"menuitem"
                 }}
                 hidden={!menuExpanded}
                 actionCall={() => {
@@ -208,10 +206,9 @@ const BoxComponent = ({ route, children }) => {
                 href={'/red'}
                 parentTag='li'
                 parentElAttr={{
-                  role:"none"
                 }}
+                description={'FIRE TYPE'}
                 a11yElAttr={{
-                  role:"menuitem"
                 }}
                 hidden={!menuExpanded}
                 actionCall={() => {
@@ -222,20 +219,19 @@ const BoxComponent = ({ route, children }) => {
               </A11y>
               <A11y
                 role='link'
-                href={'/black'}
+                href={'/blue'}
                 parentTag='li'
                 parentElAttr={{
-                  role:"none"
                 }}
                 a11yElAttr={{
-                  role:"menuitem"
                 }}
+                description={'WATER TYPE'}
                 hidden={!menuExpanded}
                 actionCall={() => {
-                  router.push('/black')
+                  router.push('/blue')
                 }}
               >
-                <Black visible={menuExpanded} position={[2, 2.2, 0]} />
+                <Blue visible={menuExpanded} position={[2, 2.2, 0]} />
               </A11y>
             </A11yTag>
           </A11yTag>
